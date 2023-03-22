@@ -15,10 +15,10 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- better up/down
-map("n", "<c-d>", "10j", { noremap = true, silent = true })
-map("n", "<c-u>", "10k", { noremap = true, silent = true })
-map("v", "<c-d>", "10j", { noremap = true, silent = true })
-map("v", "<c-u>", "10k", { noremap = true, silent = true })
+map("n", "<c-j>", "10j", { noremap = true, silent = true })
+map("n", "<c-k>", "10k", { noremap = true, silent = true })
+map("v", "<c-j>", "10j", { noremap = true, silent = true })
+map("v", "<c-k>", "10k", { noremap = true, silent = true })
 
 map("n", "<leader>\\", "<C-W>v", { desc = "Split window right" })
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
