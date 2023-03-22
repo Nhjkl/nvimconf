@@ -25,14 +25,14 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
 
 map("n", "<c-q>", "<esc>:q<cr>", { noremap = true, silent = true })
 map("n", "Q", "<esc>:q!<cr>", { noremap = true, silent = true })
-map("n", "<leader>rw", "ea<c-w><c-r>+<esc>:w<cr>", { noremap = true, silent = true })
-map("n", "<leader>r`", '"8di`P:w<cr>', { noremap = true, silent = true })
-map("n", "<leader>r'", "\"8di'P:w<cr>", { noremap = true, silent = true })
-map("n", '<leader>r"', '"8di"P:w<cr>', { noremap = true, silent = true })
-map("n", "<leader>r)", '"8di)P:w<cr>', { noremap = true, silent = true })
-map("n", "<leader>r]", '"8di]P:w<cr>', { noremap = true, silent = true })
-map("n", "<leader>r}", '"8di}P:w<cr>', { noremap = true, silent = true })
-map("n", "<leader>rt", '"8ditP:w<cr>', { noremap = true, silent = true })
+map("n", "<leader>rw", "ea<c-w><c-r>+<esc><cr>", { noremap = true, silent = true })
+map("n", "<leader>r`", '"8di`P<cr>', { noremap = true, silent = true })
+map("n", "<leader>r'", "\"8di'P<cr>", { noremap = true, silent = true })
+map("n", '<leader>r"', '"8di"P<cr>', { noremap = true, silent = true })
+map("n", "<leader>r)", '"8di)P<cr>', { noremap = true, silent = true })
+map("n", "<leader>r]", '"8di]P<cr>', { noremap = true, silent = true })
+map("n", "<leader>r}", '"8di}P<cr>', { noremap = true, silent = true })
+map("n", "<leader>rt", '"8ditP<cr>', { noremap = true, silent = true })
 map("n", "<", "<<", { noremap = true, silent = true, nowait = true })
 map("n", ">", ">>", { noremap = true, silent = true, nowait = true })
 map("x", "<", "<gv", { noremap = true, silent = true, nowait = true })
@@ -61,6 +61,13 @@ if Util.has("bufferline.nvim") then
   map(
     "n",
     "<leader>b0",
+    ":lua BufferCloseAllButCurrent()<cr>",
+    { noremap = true, silent = true, desc = "Delete other Buffer" }
+  )
+
+  map(
+    "n",
+    "<leader>0",
     ":lua BufferCloseAllButCurrent()<cr>",
     { noremap = true, silent = true, desc = "Delete other Buffer" }
   )
