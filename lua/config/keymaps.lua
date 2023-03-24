@@ -25,14 +25,14 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
 
 map("n", "<c-q>", "<esc>:q<cr>", { noremap = true, silent = true })
 map("n", "Q", "<esc>:q!<cr>", { noremap = true, silent = true })
-map("n", "<leader>rw", "ea<c-w><c-r>+<esc><cr>", { noremap = true, silent = true })
-map("n", "<leader>r`", '"8di`P<cr>', { noremap = true, silent = true })
-map("n", "<leader>r'", "\"8di'P<cr>", { noremap = true, silent = true })
-map("n", '<leader>r"', '"8di"P<cr>', { noremap = true, silent = true })
-map("n", "<leader>r)", '"8di)P<cr>', { noremap = true, silent = true })
-map("n", "<leader>r]", '"8di]P<cr>', { noremap = true, silent = true })
-map("n", "<leader>r}", '"8di}P<cr>', { noremap = true, silent = true })
-map("n", "<leader>rt", '"8ditP<cr>', { noremap = true, silent = true })
+map("n", "<leader>rw", "ea<c-w><c-r>+<esc>", { noremap = true, silent = true })
+map("n", "<leader>r`", '"8di`P', { noremap = true, silent = true })
+map("n", "<leader>r'", "\"8di'P", { noremap = true, silent = true })
+map("n", '<leader>r"', '"8di"P', { noremap = true, silent = true })
+map("n", "<leader>r)", '"8di)P', { noremap = true, silent = true })
+map("n", "<leader>r]", '"8di]P', { noremap = true, silent = true })
+map("n", "<leader>r}", '"8di}P', { noremap = true, silent = true })
+map("n", "<leader>rt", '"8ditP', { noremap = true, silent = true })
 map("n", "<", "<<", { noremap = true, silent = true, nowait = true })
 map("n", ">", ">>", { noremap = true, silent = true, nowait = true })
 map("x", "<", "<gv", { noremap = true, silent = true, nowait = true })
@@ -52,23 +52,27 @@ map(
 )
 map("n", "<leader>gt", [[:silent !tmux neww lazygit<cr>]], { noremap = true, silent = true, desc = "Lazygit (tmux)" })
 
+map("n", ",og", [[:silent !goGitHome<cr>]], { noremap = true, silent = true, desc = "goGitHome (browser)" })
+
+map("n", ",op", function()
+  require("utils").openNvimPluginGitRepo()
+end, { noremap = true, silent = true, desc = "openNvimPluginGitRepo" })
+
+map("n", ",cl", function()
+  require("utils").printCurrentVar("cword")
+end, { noremap = true, silent = true, desc = "printCurrentVar" })
+
 if Util.has("bufferline.nvim") then
-  function _G.BufferCloseAllButCurrent()
+  local function BufferCloseAllButCurrent()
     vim.cmd("BufferLineCloseLeft")
     vim.cmd("BufferLineCloseRight")
   end
 
-  map(
-    "n",
-    "<leader>b0",
-    ":lua BufferCloseAllButCurrent()<cr>",
-    { noremap = true, silent = true, desc = "Delete other Buffer" }
-  )
+  map("n", "<leader>b0", function()
+    BufferCloseAllButCurrent()
+  end, { noremap = true, silent = true, desc = "Delete other Buffer" })
 
-  map(
-    "n",
-    "<leader>0",
-    ":lua BufferCloseAllButCurrent()<cr>",
-    { noremap = true, silent = true, desc = "Delete other Buffer" }
-  )
+  map("n", "<leader>0", function()
+    BufferCloseAllButCurrent()
+  end, { noremap = true, silent = true, desc = "Delete other Buffer" })
 end
