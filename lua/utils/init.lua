@@ -1,10 +1,13 @@
 local M = {}
 
+---@param url string
 function M.openBrowser(url)
   local _url = string.gsub(url, "%#", "\\#")
   vim.cmd("silent !$BROWSER " .. _url)
 end
 
+---@param text string
+---@param regx string
 function M.getMatchContent(text, regx)
   if not regx then
     return text

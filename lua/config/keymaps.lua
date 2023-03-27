@@ -46,19 +46,19 @@ map("n", "<leader>fX", ":silent !chmod -R a-x %<cr>", { noremap = true, silent =
 -- map("n", "<leader>/", [[:silent !tmux neww<cr>]], { noremap = true, silent = true })
 map(
   "n",
-  "<leader>p",
+  "<c-f>",
   ":silent !tmux neww tmux-sessionizer<cr>",
   { noremap = true, silent = true, desc = "Projects (tmux)" }
 )
-map("n", "<leader>gt", [[:silent !tmux neww lazygit<cr>]], { noremap = true, silent = true, desc = "Lazygit (tmux)" })
+map("n", "<c-g>", [[:silent !tmux neww lazygit<cr>]], { noremap = true, silent = true, desc = "Lazygit (tmux)" })
 
-map("n", ",og", [[:silent !goGitHome<cr>]], { noremap = true, silent = true, desc = "goGitHome (browser)" })
+map("n", "<leader>og", [[:silent !goGitHome<cr>]], { noremap = true, silent = true, desc = "goGitHome (browser)" })
 
-map("n", ",op", function()
+map("n", "<leader>op", function()
   require("utils").openNvimPluginGitRepo()
 end, { noremap = true, silent = true, desc = "openNvimPluginGitRepo" })
 
-map("n", ",cl", function()
+map("n", "<leader>ol", function()
   require("utils").printCurrentVar("cword")
 end, { noremap = true, silent = true, desc = "printCurrentVar" })
 
