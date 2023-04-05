@@ -68,4 +68,10 @@ return {
       })
     end,
   },
+  {
+    "rcarriga/nvim-notify",
+    opts = function(_, opts)
+      opts.level = 3
+    end,
+  },
 }
