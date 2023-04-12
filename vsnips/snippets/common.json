@@ -1,4 +1,20 @@
 {
+  "DataModel": {
+    "prefix": "model",
+    "body": [
+      "import { BaseModel } from './BaseModel';",
+      "",
+      "interface Props {",
+      "  ${2: props}",
+      "}",
+      "",
+      "export class ${1: modelname } extends BaseModel<Props> {",
+      "  constructor() {",
+      "    super({});",
+      "  }",
+      "}"
+    ]
+  },
   "iapi": {
     "prefix": "iapi",
     "body": ["import * as API from '@/apis'"]
