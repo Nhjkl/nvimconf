@@ -28,6 +28,18 @@ return {
         },
       }
     end,
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        -- require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip.loaders.from_vscode").lazy_load({
+          paths = {
+            vim.fn.stdpath("config") .. "/vsnips/",
+            vim.fn.stdpath("config") .. "/.lazy/plugins/friendly-snippets",
+          },
+        })
+      end,
+    },
   },
   {
     "hrsh7th/nvim-cmp",
