@@ -15,17 +15,9 @@
       "}"
     ]
   },
-  "iapi": {
-    "prefix": "iapi",
-    "body": ["import * as API from '@/apis'"]
-  },
   "itaro": {
     "prefix": "itaro",
     "body": ["import Taro from '@tarojs/taro'"]
-  },
-  "ivue": {
-    "prefix": "ivue",
-    "body": ["import ${1: name} from 'vue';"]
   },
   "cfun": {
     "prefix": "cfun",
@@ -35,119 +27,15 @@
     "prefix": "ecfun",
     "body": ["export const ${1:name} = (${2:params}) => {$3}"]
   },
-  "$blue": {
-    "prefix": "$blue #436FF6",
-    "body": ["\\$blue"]
-  },
-  "$red": {
-    "body": ["\\$red"],
-    "prefix": "$red: #FF3838;"
-  },
-  "$white": {
-    "body": ["\\$white"],
-    "prefix": "$white: #ffffff;"
-  },
-  "$black": {
-    "body": ["\\$black"],
-    "prefix": "$black: #000000;"
-  },
-  "$green": {
-    "body": ["\\$green"],
-    "prefix": "$green: #64CDD1;"
-  },
-  "$orange": {
-    "body": ["\\$orange"],
-    "prefix": "$orange: #F7B500;"
-  },
-  "$background_1": {
-    "body": ["\\$background_1"],
-    "prefix": "$background_1: #F5F6F7;"
-  },
-  "$background_2": {
-    "body": ["\\$background_2"],
-    "prefix": "$background_2: rgba(67,111,246,0.1);"
-  },
-  "$background_white": {
-    "body": ["\\$background_white"],
-    "prefix": "$background_white: #FFFFFF;"
-  },
-  "$text_color_0": {
-    "body": ["\\$text_color_0"],
-    "prefix": "$text_color_0: #000000;"
-  },
-  "$text_color_1": {
-    "body": ["\\$text_color_1"],
-    "prefix": "$text_color_1: #333333;"
-  },
-  "$text_color_2": {
-    "body": ["\\$text_color_2"],
-    "prefix": "$text_color_2: #666666;"
-  },
-  "$text_color_3": {
-    "body": ["\\$text_color_3"],
-    "prefix": "$text_color_3: #999999;"
-  },
-  "$text_color_4": {
-    "body": ["\\$text_color_4"],
-    "prefix": "$text_color_4: #CCCCCC;"
-  },
-  "$text_blue": {
-    "body": ["\\$text_blue"],
-    "prefix": "$text_blue: #436FF6;"
-  },
-  "$text_white": {
-    "body": ["\\$text_white"],
-    "prefix": "$text_white: #FFFFFF;"
-  },
-  "$scss": {
-    "body": [
-      "<style lang=\"scss\">",
-      "@import '@/theme/base.scss';",
-      "$1",
-      "</style>"
-    ],
-    "prefix": "$scss"
-  },
   "vfor": {
     "body": ["v-for=\"(item, index) in ${1:list}\" :key=\"index\""],
     "prefix": "vfor"
   },
-  "$useAssembler": {
+  "s'useQuery": {
     "body": [
-      "import Taro from '@tarojs/taro'",
-      "import { reactive } from 'vue';",
-      "import * as API from '@/apis';",
-      "import { Toast } from '../../utils';",
-      "export const useAssembler = () => {",
-      "  const submitData = reactive({$1})",
-      "}"
+      "import { useRoute } from 'vue-router';",
+      "const { query } = useRoute();"
     ],
-    "prefix": "$useAssembler"
-  },
-  "$iuseAssembler": {
-    "body": ["import { useAssembler } from './index'"],
-    "prefix": "$iuseAssembler"
-  },
-  "$istore": {
-    "body": [
-      "import { useStore, configType } from '@/store';",
-      "const { getConfigByType } = useStore();",
-      "const { value: reworkConf } = getConfigByType(configType.rework);"
-    ],
-    "prefix": "$istore"
-  },
-  "$iuseD": {
-    "body": [
-      "import { usePageConf } from '@/utils';",
-      "const { submitData, pageConfInfo, handleSubmit, handleDelete } = usePageConf();"
-    ],
-    "prefix": "$iuseD"
-  },
-  "$iuseL": {
-    "body": [
-      "import { usePageConf } from '@/utils';",
-      "const { dataList, handleClickItem, handleSeach } = usePageConf();"
-    ],
-    "prefix": "$iuseL"
+    "prefix": "s-useQuery"
   }
 }
