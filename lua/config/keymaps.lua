@@ -39,6 +39,7 @@ map("x", "<", "<gv", { noremap = true, silent = true, nowait = true })
 map("x", ">", ">gv", { noremap = true, silent = true, nowait = true })
 map("v", "H", "g^", { noremap = true, silent = true })
 map("v", "L", "g_", { noremap = true, silent = true })
+map("v", "p", "P", { noremap = true, silent = true })
 
 -- unite
 map("n", "<leader>fx", ":silent !chmod +x %<cr>", { noremap = true, silent = true })

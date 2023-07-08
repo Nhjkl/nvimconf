@@ -20,7 +20,7 @@
     "body": ["import Taro from '@tarojs/taro'"]
   },
   "cfun": {
-    "prefix": "cfun",
+    "prefix": "s'cfun",
     "body": ["const ${1:name} = (${2:params}) => {$3}"]
   },
   "ecfun": {
@@ -29,13 +29,39 @@
   },
   "vfor": {
     "body": ["v-for=\"(item, index) in ${1:list}\" :key=\"index\""],
-    "prefix": "vfor"
+    "prefix": "s'vfor"
   },
-  "s'useQuery": {
+  "useQuery": {
     "body": [
       "import { useRoute } from 'vue-router';",
       "const { query } = useRoute();"
     ],
-    "prefix": "s-useQuery"
+    "prefix": "s'useQuery"
+  },
+  "commonDicMap": {
+    "body": [
+      "import { useCommonDics } from '@/utils/remotedic';",
+      "const { commonDicMap } = useCommonDics();"
+    ],
+    "prefix": "s'commonDicMap"
+  },
+  "useModel": {
+    "body": [
+      "import { ${1:AnnouncementModel} } from '@/models/${1}';",
+      "const model = new ${1}();"
+    ],
+    "prefix": "s'useModel"
+  },
+  "trigger": {
+    "body": ["const { trigger } = useBackReloadEvent();"],
+    "prefix": "s'trigger"
+  },
+  "on": {
+    "body": ["const { on } = useBackReloadEvent();"],
+    "prefix": "s'on"
+  },
+  "validation": {
+    "body": ["const { formValid } = useFormValidation<typeof data>({ });"],
+    "prefix": "s'valid"
   }
 }
