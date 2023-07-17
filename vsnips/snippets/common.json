@@ -63,5 +63,16 @@
   "validation": {
     "body": ["const { formValid } = useFormValidation<typeof data>({ });"],
     "prefix": "s'valid"
+  },
+  "define props": {
+    "body": [
+      "interface Props {",
+      "  isEdit?: boolean;",
+      "}",
+      "const props = withDefaults(defineProps<Props>(), {",
+      "  isEdit: true,",
+      "});"
+    ],
+    "prefix": "s'props"
   }
 }
