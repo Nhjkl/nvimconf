@@ -1,5 +1,5 @@
 return {
-  "lilydjwg/fcitx.vim",
+  "h-hg/fcitx.nvim",
 
   event = "BufReadPre",
 }
