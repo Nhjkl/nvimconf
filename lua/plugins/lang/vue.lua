@@ -26,6 +26,7 @@ return {
           "vim",
           "vimdoc",
           "yaml",
+          "http",
         }
       end
     end,
