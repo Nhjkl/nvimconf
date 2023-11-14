@@ -27,6 +27,7 @@ return {
           "vimdoc",
           "yaml",
           "http",
+          "rust",
         }
       end
     end,
@@ -36,6 +37,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = {
+        virtual_text = false,
+      },
       servers = {
         ---@type lspconfig.options.vuels
         vuels = {

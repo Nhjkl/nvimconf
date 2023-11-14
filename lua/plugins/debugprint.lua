@@ -1,6 +1,6 @@
 return {
   "andrewferrier/debugprint.nvim",
-  opts = { ... },
+  opts = {},
   -- Dependency only needed for NeoVim 0.8
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
@@ -8,4 +8,8 @@ return {
   -- Remove the following line to use development versions,
   -- not just the formal releases
   version = "*",
+
+  config = function()
+    require("debugprint").setup()
+  end,
 }
