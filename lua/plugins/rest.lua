@@ -1,30 +1,27 @@
 return {
-  "rest-nvim/rest.nvim",
-
-  event = "VeryLazy",
-
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-
-  keys = {
-    {
-      "<leader>rr",
-      function()
-        require("rest-nvim").run()
-      end,
-      desc = "rest nvim run",
-    },
-    {
-      "<leader>rp",
-      function()
-        require("rest-nvim").run(true)
-      end,
-      desc = "rest nvim run preview",
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }, -- Specify LuaRocks packages to install
     },
   },
+  {
+    "rest-nvim/rest.nvim",
 
-  config = function()
-    require("rest-nvim").setup({})
-  end,
+    ft = "http",
+
+    dependencies = {
+      "luarocks.nvim",
+    },
+
+    keys = {
+      { "<leader>rr", "<cmd>Rest run<cr>", desc = "Run REST request" },
+    },
+
+    config = function()
+      require("rest-nvim").setup({})
+    end,
+  },
 }
