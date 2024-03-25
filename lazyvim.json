@@ -1,6 +1,7 @@
 {
   "extras": [
     "lazyvim.plugins.extras.coding.codeium",
+    "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.json",
@@ -14,3 +15,4 @@
   },
   "version": 3
 }
+
