@@ -41,7 +41,6 @@ return {
         virtual_text = false,
       },
       servers = {
-        ---@type lspconfig.options.vuels
         vuels = {
           init_options = {
             config = {

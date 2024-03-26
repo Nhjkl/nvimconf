@@ -5,11 +5,11 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
   },
-  opts = {
-    menu = {
-      width = vim.api.nvim_win_get_width(0) - 4,
-    },
-  },
+  -- opts = {
+  --   menu = {
+  --     width = vim.api.nvim_win_get_width(0) - 4,
+  --   },
+  -- },
   config = function()
     local harpoon = require("harpoon")
     local tmux = require("utils.tmux")
@@ -65,6 +65,8 @@ return {
         function()
           harpoon.ui:toggle_quick_menu(harpoon:list("cmd"), {
             title = "Harpoon cmd menu",
+            border = "rounded",
+            title_pos = "center",
           })
           -- toggle_telescope(harpoon:list("cmd"))
         end,
