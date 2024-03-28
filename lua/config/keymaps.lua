@@ -1,7 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-local Util = require("lazyvim.util")
+local utils = require("utils")
 
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
@@ -44,7 +44,8 @@ map("v", "p", "P", { noremap = true, silent = true })
 -- unite
 map("n", "<leader>fx", ":silent !chmod +x %<cr>", { noremap = true, silent = true })
 map("n", "<leader>fX", ":silent !chmod -R a-x %<cr>", { noremap = true, silent = true })
--- map("n", "<leader>/", [[:silent !tmux neww<cr>]], { noremap = true, silent = true })
+-- map("n", "<leader>ft", [[:silent !tmux-popup<cr>]], { desc = "tmux popup" })
+
 map(
   "n",
   "<c-f>",
@@ -56,24 +57,15 @@ map("n", "<c-g>", [[:silent !tmux neww lazygit<cr>]], { noremap = true, silent =
 map("n", "<leader>og", [[:silent !goGitHome<cr>]], { noremap = true, silent = true, desc = "goGitHome (browser)" })
 
 map("n", "<leader>op", function()
-  require("utils").openNvimPluginGitRepo()
-end, { noremap = true, silent = true, desc = "openNvimPluginGitRepo" })
+  utils.open_nvim_plugin_git_repo()
+end, { noremap = true, silent = true, desc = "open_nvim_plugin_git_repo" })
+
+map("n", "<leader>ob", function()
+  utils.match_line_url(function(url)
+    utils.open_browser(url)
+  end)
+end, { noremap = true, silent = true, desc = "open_nvim_plugin_git_repo" })
 
 map("n", "<leader>ol", function()
-  require("utils").printCurrentVar("cword")
-end, { noremap = true, silent = true, desc = "printCurrentVar" })
-
-if Util.has("bufferline.nvim") then
-  local function BufferCloseAllButCurrent()
-    vim.cmd("BufferLineCloseLeft")
-    vim.cmd("BufferLineCloseRight")
-  end
-
-  map("n", "<leader>b0", function()
-    BufferCloseAllButCurrent()
-  end, { noremap = true, silent = true, desc = "Delete other Buffer" })
-
-  map("n", "<leader>0", function()
-    BufferCloseAllButCurrent()
-  end, { noremap = true, silent = true, desc = "Delete other Buffer" })
-end
+  utils.print_current_var("cword")
+end, { noremap = true, silent = true, desc = "print_current_var" })

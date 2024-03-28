@@ -1,43 +1,84 @@
-if true then
-  return {}
-end
-
 return {
-  "Nhjkl/harpoon",
-  -- 'ThePrimeagen/harpoon',
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
+  -- opts = {
+  --   menu = {
+  --     width = vim.api.nvim_win_get_width(0) - 4,
+  --   },
+  -- },
+  config = function()
+    local harpoon = require("harpoon")
+    local tmux = require("utils.tmux")
+
+    harpoon:setup({
+      cmd = {
+        select = function(list_item)
+          tmux._sendCommand(list_item.value)
+        end,
+      },
+    })
+  end,
   keys = function()
-    local ui = require("harpoon.ui")
-    local mark = require("harpoon.mark")
-    local cmdui = require("harpoon.cmd-ui")
+    local harpoon = require("harpoon")
+    local tmux = require("utils.tmux")
+    local conf = require("telescope.config").values
+    local function toggle_telescope(harpoon_files)
+      local file_paths = {}
+      for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+      end
+
+      require("telescope.pickers")
+        .new({}, {
+          prompt_title = "Harpoon",
+          finder = require("telescope.finders").new_table({
+            results = file_paths,
+          }),
+          previewer = conf.file_previewer({}),
+          sorter = conf.generic_sorter({}),
+        })
+        :find()
+    end
+
     return {
+      {
+        "<leader>ma",
+        function()
+          harpoon:list():append()
+        end,
+        desc = "Harpoon file",
+      },
       {
         "<leader>mm",
         function()
-          ui.toggle_quick_menu()
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+          -- toggle_telescope(harpoon:list())
         end,
-        desc = "harpoon ui toggle_quick_menu",
+        desc = "Harpoon quick menu",
       },
       {
         "<leader>mc",
         function()
-          cmdui.toggle_quick_menu()
+          harpoon.ui:toggle_quick_menu(harpoon:list("cmd"), {
+            title = "Harpoon cmd menu",
+            border = "rounded",
+            title_pos = "center",
+          })
+          -- toggle_telescope(harpoon:list("cmd"))
         end,
         desc = "harpoon cmd ui toggle_quick_menu",
       },
       {
-        "<leader>ma",
+        "<leader>mq",
         function()
-          mark.add_file()
+          tmux.clear_all()
         end,
-        desc = "harpoon mark add_file",
+        desc = "clear all tmux windows",
       },
     }
-  end,
-
-  init = function()
-    vim.g.select_menu_item_callback = function(cmd)
-      local tmux = require("harpoon.tmux")
-      tmux.sendCommand(1, cmd .. "\n")
-    end
   end,
 }
