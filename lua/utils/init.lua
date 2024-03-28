@@ -2,8 +2,14 @@ local M = {}
 
 ---@param url string
 function M.open_browser(url)
-  local _url = string.gsub(url, "%#", "\\#")
-  vim.cmd("silent !$BROWSER " .. _url)
+  vim.cmd("silent !$BROWSER " .. M.encode_url(url))
+end
+
+function M.encode_url(url)
+  url = string.gsub(url, "%#", "\\#")
+  url = string.gsub(url, "%?", "\\?")
+  url = string.gsub(url, "%&", "\\&")
+  return url
 end
 
 ---@param text string
@@ -45,7 +51,8 @@ end
 
 function M.match_line_url(cb)
   local curLine = vim.api.nvim_get_current_line()
-  local url = M.get_match_content(curLine, "http?s://[^ ^)^%]]*", 0)
+  local url = M.get_match_content(curLine, 'http?s://[^ ^)^%]^"]*', 0)
+
   if url ~= nil then
     cb(url)
   end
@@ -102,20 +109,6 @@ function M.get_os_command_output(cmd, cwd)
   }):sync()
 
   return stdout, ret, stderr
-end
-
-function M.get_visual_selection()
-  local s_start = vim.fn.getpos("'<")
-  local s_end = vim.fn.getpos("'>")
-  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
-  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
-  lines[1] = string.sub(lines[1], s_start[3], -1)
-  if n_lines == 1 then
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
-  else
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
-  end
-  return table.concat(lines, "\n")
 end
 
 return M

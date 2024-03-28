@@ -66,6 +66,12 @@ map("n", "<leader>ob", function()
   end)
 end, { noremap = true, silent = true, desc = "open_nvim_plugin_git_repo" })
 
+map("n", "<leader>oi", function()
+  utils.match_line_url(function(url)
+    vim.cmd("silent !feh " .. utils.encode_url(url))
+  end)
+end, { noremap = true, silent = true, desc = "open image with feh" })
+
 map("n", "<leader>ol", function()
   utils.print_current_var("cword")
 end, { noremap = true, silent = true, desc = "print_current_var" })
