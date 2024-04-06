@@ -5,3 +5,4 @@
 -- vim.cmd("hi HarpoonWindow ctermfg=246 ctermbg=239 guifg=#82aaff")
 -- vim.cmd("hi link HarpoonBorder NoiceCmdlinePopupBorder")
 -- vim.cmd("hi link LspInlayHint comment")
+require("utils.fcitx").setup()
