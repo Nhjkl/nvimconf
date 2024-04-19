@@ -25,6 +25,7 @@ return {
       enabled = true,
     },
 
-    lang = "typescript",
+    -- lang = "typescript",
+    lang = "rust",
   },
 }

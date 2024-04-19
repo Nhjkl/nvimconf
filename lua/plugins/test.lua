@@ -16,7 +16,9 @@ return {
       require("neotest").setup({
         adapters = {
           require("neotest-vitest"),
-          require("neotest-rust"),
+          require("neotest-rust")({
+            args = { "--no-capture" },
+          }),
         },
       })
     end,

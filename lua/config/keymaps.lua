@@ -64,7 +64,7 @@ map("n", "<leader>ob", function()
   utils.match_line_url(function(url)
     utils.open_browser(url)
   end)
-end, { noremap = true, silent = true, desc = "open_nvim_plugin_git_repo" })
+end, { noremap = true, silent = true, desc = "open_url_with_browser" })
 
 map("n", "<leader>oi", function()
   utils.match_line_url(function(url)
