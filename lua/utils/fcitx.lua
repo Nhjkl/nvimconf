@@ -1,9 +1,5 @@
 local M = {}
 
-if os.getenv("SSH_TTY") ~= nil then
-  return
-end
-
 -- check fcitx-remote (fcitx5-remote)
 local fcitx_cmd = ""
 if vim.fn.executable("fcitx-remote") == 1 then
@@ -44,6 +40,10 @@ function _Fcitx2NonLatin()
 end
 
 function M.setup()
+  if os.getenv("SSH_TTY") ~= nil then
+    return
+  end
+
   vim.cmd([[
   augroup fcitx
     au InsertEnter * :lua _Fcitx2en()

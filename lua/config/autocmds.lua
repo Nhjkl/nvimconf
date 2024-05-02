@@ -7,7 +7,7 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("user_custom_" .. name, { clear = true })
 end
 
--- require("utils.fcitx").setup()
+require("utils.fcitx").setup()
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("markdown_disable_format"),
