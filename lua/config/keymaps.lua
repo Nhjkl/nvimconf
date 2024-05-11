@@ -15,16 +15,12 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- better up/down
-map("n", "<c-j>", "10j", { noremap = true, silent = true })
-map("n", "<c-k>", "10k", { noremap = true, silent = true })
-map("v", "<c-j>", "10j", { noremap = true, silent = true })
-map("v", "<c-k>", "10k", { noremap = true, silent = true })
+map({ "n", "x" }, "<c-k>", "v:count == 0 ? '10gk' : '10k'", { expr = true, silent = true })
+map({ "n", "x" }, "<c-j>", "v:count == 0 ? '10gj' : '10j'", { expr = true, silent = true })
 
 map("n", "<leader>\\", "<C-W>v", { desc = "Split window right" })
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
 
-map("n", "<c-q>", "<esc>:q<cr>", { noremap = true, silent = true })
-map("n", "Q", "<esc>:q!<cr>", { noremap = true, silent = true })
 map("n", "<leader>rw", "ea<c-w><c-r>+<esc>", { noremap = true, silent = true })
 map("n", "<leader>r`", '"8di`P', { noremap = true, silent = true })
 map("n", "<leader>r'", "\"8di'P", { noremap = true, silent = true })
@@ -35,11 +31,16 @@ map("n", "<leader>r}", '"8di}P', { noremap = true, silent = true })
 map("n", "<leader>rt", '"8ditP', { noremap = true, silent = true })
 map("n", "<", "<<", { noremap = true, silent = true, nowait = true })
 map("n", ">", ">>", { noremap = true, silent = true, nowait = true })
-map("x", "<", "<gv", { noremap = true, silent = true, nowait = true })
-map("x", ">", ">gv", { noremap = true, silent = true, nowait = true })
-map("v", "H", "g^", { noremap = true, silent = true })
-map("v", "L", "g_", { noremap = true, silent = true })
-map("v", "p", "P", { noremap = true, silent = true })
+-- map("x", "<", "<gv", { noremap = true, silent = true, nowait = true })
+-- map("x", ">", ">gv", { noremap = true, silent = true, nowait = true })
+-- map({ "n", "x" }, "H", "g^", { noremap = true, silent = true })
+-- map({ "n", "x" }, "L", "g_", { noremap = true, silent = true })
+map({ "x" }, "H", "g^", { noremap = true, silent = true })
+map({ "x" }, "L", "g_", { noremap = true, silent = true })
+map("x", "p", "P", { noremap = true, silent = true })
+-- quit
+map({ "n", "x" }, "<c-q>", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "Q", "<cmd>q<cr>", { desc = "Quit Buffer" })
 
 -- unite
 map("n", "<leader>fx", ":silent !chmod +x %<cr>", { noremap = true, silent = true })

@@ -17,3 +17,5 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = false
   end,
 })
+
+-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#1f2335", bg = "#1f2335" })

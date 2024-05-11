@@ -2,8 +2,8 @@ return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   dependencies = {
-    "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
+    "nvim-lua/plenary.nvim",
   },
   -- opts = {
   --   menu = {
@@ -65,8 +65,8 @@ return {
         function()
           harpoon.ui:toggle_quick_menu(harpoon:list("cmd"), {
             title = "Harpoon cmd menu",
-            border = "rounded",
-            title_pos = "center",
+            -- border = "rounded",
+            -- title_pos = "center",
           })
           -- toggle_telescope(harpoon:list("cmd"))
         end,
