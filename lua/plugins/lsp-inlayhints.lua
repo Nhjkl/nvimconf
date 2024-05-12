@@ -5,6 +5,7 @@
 return {
   {
     "lvimuser/lsp-inlayhints.nvim",
+    event = "BufReadPre",
     opts = function()
       require("lsp-inlayhints").setup()
     end,
