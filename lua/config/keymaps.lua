@@ -39,8 +39,7 @@ map({ "x" }, "H", "g^", { noremap = true, silent = true })
 map({ "x" }, "L", "g_", { noremap = true, silent = true })
 map("x", "p", "P", { noremap = true, silent = true })
 -- quit
-map({ "n", "x" }, "<c-q>", "<cmd>qa<cr>", { desc = "Quit All" })
-map("n", "Q", "<cmd>q<cr>", { desc = "Quit Buffer" })
+map({ "n", "x" }, "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- unite
 map("n", "<leader>fx", ":silent !chmod +x %<cr>", { noremap = true, silent = true })
