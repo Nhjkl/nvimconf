@@ -157,7 +157,8 @@ end
 
 local function randomHeader(dashboard, header)
   if not header then
-    header = header_color(lineColor(headers[math.random(#headers)]))
+    -- header = header_color(lineColor(headers[math.random(#headers)]))
+    header = header_color(lineColor(headers[math.random(14, 19)]))
   end
   dashboard.section.header.opts.position = header.opts.position
   dashboard.section.header.type = header.type
@@ -189,15 +190,19 @@ end
 
 function M.setHeaders(dashboard, type)
   local fns = {
-    -- neovimHeader,
-    -- randomHeader,
+    neovimHeader,
+    randomHeader,
     LifeProgressHeader,
   }
+  local fn = randomHeader
   if type == "neovim" then
-    neovimHeader(dashboard)
+    fn = neovimHeader
+  elseif type == "life" then
+    fn = LifeProgressHeader
   else
-    fns[math.random(#fns)](dashboard)
+    fn = fns[math.random(#fns)]
   end
+  fn(dashboard)
 end
 
 return M

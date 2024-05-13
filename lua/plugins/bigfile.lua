@@ -1,6 +1,5 @@
-local utils = require("utils")
 -- 检查JavaScript文件是否可能被压缩
-local function check_js_compression(bufnr)
+local function check_compression(bufnr)
   -- 获取当前文件的完整路径
   local filename = vim.api.nvim_buf_get_name(bufnr)
   -- 尝试以只读方式打开文件，获取其内容
@@ -28,26 +27,16 @@ end
 return {
   "LunarVim/bigfile.nvim",
   event = "BufReadPre",
-  -- Disables LSP/treesitter, etc for files above 5000 lines (even if they have really long lines)
   opts = {
     pattern = function(bufnr, filesize_mib)
       if filesize_mib >= 2 then
         return true
       end
-
-      if check_js_compression(bufnr) then
+      if check_compression(bufnr) then
         return true
       end
-      -- you can't use `nvim_buf_line_count` because this runs on BufReadPre
-      local file_contents = vim.fn.readfile(vim.api.nvim_buf_get_name(bufnr))
-      local file_length = #file_contents
-      if file_length > 5000 then
-        return true
-      end
-
       return false
     end,
-
     features = { -- features to disable
       "indent_blankline",
       "illuminate",

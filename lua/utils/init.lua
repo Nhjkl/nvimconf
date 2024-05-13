@@ -152,7 +152,7 @@ end
 function M.life_progress_bar(birth_year, point)
   local current_year = os.date("%Y")
   local age = current_year - birth_year
-  local average_lifespan = 80
+  local average_lifespan = 100
   -- 计算进度条长度
   local bar_length = 50 -- 进度条总长度为80个字符
   local progress = (age / average_lifespan) * bar_length

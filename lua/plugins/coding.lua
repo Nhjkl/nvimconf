@@ -84,7 +84,16 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = function(_, opts)
-      opts.level = 3
+      opts.level = vim.log.levels.ERROR
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      -- local utils = require("utils")
+      opts.diagnostics.virtual_text = false
+
+      opts.inlay_hints.enabled = false
     end,
   },
 }
