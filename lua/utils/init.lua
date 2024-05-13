@@ -149,4 +149,23 @@ function M.generateGradientColors(count)
   return colors
 end
 
+function M.life_progress_bar(birth_year, point)
+  local current_year = os.date("%Y")
+  local age = current_year - birth_year
+  local average_lifespan = 80
+  -- 计算进度条长度
+  local bar_length = 50 -- 进度条总长度为80个字符
+  local progress = (age / average_lifespan) * bar_length
+
+  local bar = string.rep("━", math.floor(progress))
+    .. point
+    .. string.rep("━", bar_length - math.floor(progress) - 1)
+
+  local life_progress = math.floor(age / average_lifespan * 100)
+  if life_progress < 10 then
+    return bar .. "0" .. tostring(life_progress) .. "%"
+  end
+  return bar .. life_progress .. "%"
+end
+
 return M

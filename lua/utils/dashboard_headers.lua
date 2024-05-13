@@ -120,16 +120,12 @@ local function lineColor(lines)
   return out
 end
 
-local function header_chars()
-  return lineColor(headers[math.random(#headers)])
-end
-
 -- Map over the headers, setting a different color for each line.
 -- This is done by setting the Highligh to StartLogoN, where N is the row index.
 -- Define AlphaDashboardHeader1..AlphaDashboardHeaderN to get a nice gradient.
-local function header_color()
+local function header_color(header_chars)
   local lines = {}
-  for _, lineConfig in pairs(header_chars()) do
+  for _, lineConfig in pairs(header_chars) do
     local hi = lineConfig.hi
     local line_chars = lineConfig.line
     local line = {
@@ -159,18 +155,43 @@ local function header_color()
   return output
 end
 
-local function randomHeader(dashboard)
-  local header = header_color()
+local function randomHeader(dashboard, header)
+  if not header then
+    header = header_color(lineColor(headers[math.random(#headers)]))
+  end
   dashboard.section.header.opts.position = header.opts.position
   dashboard.section.header.type = header.type
   dashboard.section.header.val = header.val
   dashboard.opts.layout[1].val = header.opts.top
 end
 
+local life_progress_bar = utils.life_progress_bar
+local function LifeProgressHeader(dashboard)
+  local lines = {
+    -- [[𝖑𝖎𝖋𝖊 𝖕𝖗𝖔𝖌𝖗𝖊𝖘𝖘]],
+    -- "l̊i̊f̊e̊ ̊p̊r̊o̊g̊r̊e̊s̊s̊",
+    "𝓵𝓲𝓯𝓮 𝓹𝓻𝓸𝓰𝓻𝓮𝓼𝓼",
+    -- [[▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄]],
+    -- [[█ ███▄██ ▄▄█ ▄▄███▀▄▄▀█ ▄▄▀█▀▄▄▀█ ▄▄▄█ ▄▄▀█ ▄▄█ ▄▄█ ▄▄]],
+    -- [[█ ███ ▄█ ▄██ ▄▄███ ▀▀ █ ▀▀▄█ ██ █ █▄▀█ ▀▀▄█ ▄▄█▄▄▀█▄▄▀]],
+    -- [[█▄▄█▄▄▄█▄███▄▄▄███ ████▄█▄▄██▄▄██▄▄▄▄█▄█▄▄█▄▄▄█▄▄▄█▄▄▄]],
+    -- [[▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀]],
+    -- [[108,105,102,101,32,112,114,111,103,114,101,115,115]],
+    life_progress_bar(2022, "👶"),
+    life_progress_bar(1992, "👰"),
+    life_progress_bar(1990, "🤵"),
+    life_progress_bar(1957, "👵"),
+    life_progress_bar(1955, "👴"),
+  }
+  local header = header_color(lineColor(lines))
+  randomHeader(dashboard, header)
+end
+
 function M.setHeaders(dashboard, type)
   local fns = {
-    neovimHeader,
-    randomHeader,
+    -- neovimHeader,
+    -- randomHeader,
+    LifeProgressHeader,
   }
   if type == "neovim" then
     neovimHeader(dashboard)
